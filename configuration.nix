@@ -252,6 +252,7 @@
      jetbrains.phpstorm
      jetbrains.webstorm
 
+     opencode
      tailscale
 
      laravel
