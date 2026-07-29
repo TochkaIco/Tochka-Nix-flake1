@@ -143,6 +143,7 @@
     gl = "git log";
     gds = "git diff --staged";
     ga = "git add .; git status";
+    gc-m = "git commit -m";
 
     # Laravel
     sail = "./vendor/bin/sail";
