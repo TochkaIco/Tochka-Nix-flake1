@@ -144,6 +144,7 @@
     gds = "git diff --staged";
     ga = "git add .; git status";
     gc-m = "git commit -m";
+    gp = "git push";
 
     # Laravel
     sail = "./vendor/bin/sail";
