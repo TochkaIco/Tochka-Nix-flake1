@@ -95,7 +95,7 @@
   users.users."tochka" = {
     isNormalUser = true;
     description = "Fedor Romanov";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -124,6 +124,8 @@
 
   programs.fish.enable = true;
 
+  virtualisation.docker.enable = true; 
+
   environment.sessionVariables = {
     GTK_USE_PORTAL = "1";
 
@@ -140,9 +142,10 @@
     gs = "git status";
     gl = "git log";
     gds = "git diff --staged";
-    gia = "git add .; git status";
+    ga = "git add .; git status";
 
     # Laravel
+    sail = "./vendor/bin/sail";
     sailupd = "sail down; sail up -d; sail npm run dev";
     laratest = "composer run format; sail pest; vendor/bin/rector; git add .; git status";
 
@@ -256,7 +259,15 @@
      tailscale
 
      laravel
-     php85
+     (php85.withExtensions ({ enabled, all }: enabled ++ [
+       all.pdo_sqlite
+       all.pdo_mysql
+       all.mbstring
+       all.xml
+       all.curl
+       all.zip
+     ]))
+     php85Packages.composer
      nodejs_26
      python3
   ];
