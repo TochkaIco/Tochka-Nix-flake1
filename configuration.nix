@@ -224,6 +224,12 @@
 
   programs.gpu-screen-recorder.enable = true;
 
+  services.clamav = {
+    daemon.enable = true;
+    updater.enable = true;
+    updater.interval = "daily";
+  };
+ 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -242,6 +248,7 @@
      kitty
      foot
      tree
+     nmap
 
      # Regular Apps
      telegram-desktop
@@ -259,7 +266,6 @@
 
      opencode
      antigravity
-     tailscale
 
      laravel
      (php85.withExtensions ({ enabled, all }: enabled ++ [
