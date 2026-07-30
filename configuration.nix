@@ -258,6 +258,7 @@
      jetbrains.webstorm
 
      opencode
+     antigravity
      tailscale
 
      laravel
