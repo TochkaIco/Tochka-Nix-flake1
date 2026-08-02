@@ -153,7 +153,7 @@
 
     # NixOs
     rebuild = "cd /home/tochka/nix; git add .; git status; sudo nixos-rebuild switch --flake /home/tochka/nix/.#nixos";
-    updatere = "cd /home/tochka/nix; git add .; git status; sudo nixos-rebuild switch --flake /home/tochka/nix/.#nixos --recreate-lock-file";
+    updatere = "cd /home/tochka/nix; git add .; git status; sudo nix flake update";
   };
 
   hardware.bluetooth = {
@@ -252,6 +252,7 @@
 
      # Regular Apps
      telegram-desktop
+     signal-desktop
      vesktop
      spotify
      spicetify-cli
