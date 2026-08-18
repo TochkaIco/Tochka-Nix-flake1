@@ -70,6 +70,10 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  services.udev.extraRules = ''
+    ATTRS{idVendor}=="04f9", ATTRS{idProduct}=="2061", MODE="0664", GROUP="lp"
+  '';
+
   services.tailscale.enable = true;
 
   # Enable sound with pipewire.
@@ -95,7 +99,7 @@
   users.users."tochka" = {
     isNormalUser = true;
     description = "Fedor Romanov";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "gamemode" "lp" ];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -122,7 +126,25 @@
   # Load your separate home.nix file here:
   home-manager.users.tochka = import ./home.nix;
 
-  programs.fish.enable = true;
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      # Function to grab all arguments from the previous command (!*)
+      function __history_previous_args
+        echo (string replace -r '^\S+\s*' "" -- $history[1])
+      end
+
+      # Function to grab the last argument from the previous command (!$)
+      function __history_last_arg
+      echo (string split -r -m1 ' ' -- $history[1])[2]
+      end
+  
+      # Native expansions on Space or Enter
+      abbr -a !! --position anywhere --function 'echo $history[1]'
+      abbr -a '!*' --position anywhere --function __history_previous_args
+      abbr -a '!$' --position anywhere --function __history_last_arg
+    '';
+  }; 
 
   virtualisation.docker.enable = true; 
 
@@ -229,6 +251,12 @@
     updater.enable = true;
     updater.interval = "daily";
   };
+
+  programs.gamemode.enable = true;
+
+  programs.steam = { 
+  gamescopeSession.enable = true;
+};
  
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -237,6 +265,8 @@
      home-manager
      wf-recorder
      kdePackages.dolphin
+     zip
+     unzip
 
      # CLI
      vim
@@ -249,6 +279,9 @@
      foot
      tree
      nmap
+     tigervnc
+     ptouch-print
+     imagemagick
 
      # Regular Apps
      telegram-desktop
@@ -256,7 +289,7 @@
      vesktop
      spotify
      spicetify-cli
-     rnote
+     rnote 
  
      freecad
 
