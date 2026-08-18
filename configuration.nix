@@ -70,10 +70,6 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  services.udev.extraRules = ''
-    ATTRS{idVendor}=="04f9", ATTRS{idProduct}=="2061", MODE="0664", GROUP="lp"
-  '';
-
   services.tailscale.enable = true;
 
   # Enable sound with pipewire.
@@ -99,7 +95,7 @@
   users.users."tochka" = {
     isNormalUser = true;
     description = "Fedor Romanov";
-    extraGroups = [ "networkmanager" "wheel" "docker" "gamemode" "lp" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "gamemode" ];
     packages = with pkgs; [
     #  thunderbird
     ];
