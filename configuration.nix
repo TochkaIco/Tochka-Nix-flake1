@@ -329,6 +329,7 @@ in
      vscode
      jetbrains.phpstorm
      jetbrains.webstorm
+     jetbrains.pycharm
 
      opencode
      antigravity
