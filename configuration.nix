@@ -2,13 +2,51 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
+let
+  envFilePath = /home/tochka/nix/.env;
+  altEnvFilePath = /etc/nixos/.env;
+
+  hasEnvFile = builtins.pathExists envFilePath;
+  hasAltEnvFile = builtins.pathExists altEnvFilePath;
+
+  envContent =
+    if hasEnvFile then builtins.readFile envFilePath
+    else if hasAltEnvFile then builtins.readFile altEnvFilePath
+    else "";
+
+  parseEnvLine = line:
+    let
+      trimmed = lib.strings.trim line;
+      isComment = lib.hasPrefix "#" trimmed;
+      hasEqual = lib.hasInfix "=" trimmed;
+    in
+    if !isComment && hasEqual then
+      let
+        parts = lib.splitString "=" trimmed;
+        key = lib.strings.trim (builtins.elemAt parts 0);
+        val = lib.strings.trim (lib.concatStringsSep "=" (builtins.tail parts));
+      in
+      { name = key; value = val; }
+    else
+      null;
+
+  lines = lib.splitString "\n" envContent;
+  parsedPairs = lib.filter (x: x != null) (map parseEnvLine lines);
+  envVars = builtins.listToAttrs parsedPairs;
+
+  enableNvidiaEnvVar = builtins.getEnv "ENABLE_NVIDIA";
+  enableNvidiaRaw =
+    if enableNvidiaEnvVar != "" then enableNvidiaEnvVar
+    else (envVars.ENABLE_NVIDIA or "true");
+  enableNvidia = enableNvidiaRaw == "true" || enableNvidiaRaw == "1" || enableNvidiaRaw == "yes";
+in
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include hardware configuration from system path /etc/nixos/hardware-configuration.nix
+    /etc/nixos/hardware-configuration.nix
+  ];
 
   programs.hyprland.enable = true;
 
@@ -170,7 +208,7 @@
     laratest = "composer run format; sail pest; vendor/bin/rector; git add .; git status";
 
     # NixOs
-    rebuild = "cd /home/tochka/nix; git add .; git status; sudo nixos-rebuild switch --flake /home/tochka/nix/.#nixos";
+    rebuild = "cd /home/tochka/nix; git add .; git status; sudo nixos-rebuild switch --impure --flake /home/tochka/nix/.#nixos";
     updatere = "cd /home/tochka/nix; git add .; git status; sudo nix flake update";
   };
 
@@ -192,37 +230,35 @@
     enable32Bit = true;
   };
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = lib.optionals enableNvidia [ "nvidia" ];
 
-  hardware.nvidia = {
-  # Modesetting is required for most modern desktop environments (e.g., Wayland)
+  hardware.nvidia = lib.mkIf enableNvidia {
+    # Modesetting is required for most modern desktop environments (e.g., Wayland)
     modesetting.enable = true;
 
-  # Enable power management options (helps prevent issues with suspend/resume)
+    # Enable power management options (helps prevent issues with suspend/resume)
     powerManagement.enable = false;
     powerManagement.finegrained = false;
 
-  # Enable the NVIDIA settings menu
+    # Enable the NVIDIA settings menu
     nvidiaSettings = true;
 
     # Select the appropriate driver package
-    # Options: stable, beta, production, legacy_390, etc.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
 
     # Set open-source kernel modules (recommended true for Turing/RTX 20 series or newer)
-    open = true; # Set to false if you have GTX 10-series or older cards
-  };
+    open = true;
 
-  hardware.nvidia.prime = {
-    # Enable offload mode (renders apps on dGPU only when requested)
-    offload = {
-      enable = true;
-      enableOffloadCmd = true; # Adds the `nvidia-offload` wrapper command
+    prime = {
+      # Enable offload mode (renders apps on dGPU only when requested)
+      offload = {
+        enable = true;
+        enableOffloadCmd = true; # Adds the `nvidia-offload` wrapper command
+      };
+
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
     };
-
-    # Replace these with your actual PCI Bus IDs found via lspci
-    intelBusId = "PCI:0:2:0";  # Use amdgpuBusId if using an AMD CPU
-    nvidiaBusId = "PCI:1:0:0";
   };
 
   fonts = {
