@@ -321,7 +321,8 @@ in
      vesktop
      spotify
      spicetify-cli
-     rnote 
+     rnote
+     texmaker 
  
      freecad
 
