@@ -172,9 +172,13 @@ in
       function __history_last_arg
       	echo (string split -r -m1 ' ' -- $history[1])[2]
       end
+
+      function __history_one
+      	echo $history[1]
+      end
   
       # Native expansions on Space or Enter
-      abbr -a !! --position anywhere --function 'echo $history[1]'
+      abbr -a !! --position anywhere --function __history_one
       abbr -a '!*' --position anywhere --function __history_previous_args
       abbr -a '!$' --position anywhere --function __history_last_arg
     '';
