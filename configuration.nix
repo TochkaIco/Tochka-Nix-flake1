@@ -62,7 +62,7 @@ in
   };
 
   # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -170,7 +170,7 @@ in
 
       # Function to grab the last argument from the previous command (!$)
       function __history_last_arg
-      echo (string split -r -m1 ' ' -- $history[1])[2]
+      	echo (string split -r -m1 ' ' -- $history[1])[2]
       end
   
       # Native expansions on Space or Enter
