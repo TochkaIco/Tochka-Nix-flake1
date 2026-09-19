@@ -122,8 +122,8 @@ in
   programs.git = {
     enable = true;
 
-    settings.user.name = "Fedor Romanov";
-    settings.user.email = "fedor1378romanov@gmail.com";
+    settings.user.name = "Sasha Romanova";
+    settings.user.email = "tochkasvg@gmail.com";
 
     signing = {
       key = "~/.ssh/id_ed25519.pub";
