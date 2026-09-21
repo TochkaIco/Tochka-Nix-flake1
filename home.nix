@@ -123,7 +123,7 @@ in
     enable = true;
 
     settings.user.name = "Sasha Romanova";
-    settings.user.email = "tochkasvg@gmail.com";
+    settings.user.email = "fedor1378romanov@gmail.com";
 
     signing = {
       key = "~/.ssh/id_ed25519.pub";
