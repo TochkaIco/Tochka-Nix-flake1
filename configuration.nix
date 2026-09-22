@@ -132,7 +132,7 @@ in
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."tochka" = {
     isNormalUser = true;
-    description = "Fedor Romanov";
+    description = "Sasha Romanova";
     extraGroups = [ "networkmanager" "wheel" "docker" "gamemode" ];
     packages = with pkgs; [
     #  thunderbird
@@ -289,10 +289,6 @@ in
   };
 
   programs.gamemode.enable = true;
-
-  programs.steam = { 
-  gamescopeSession.enable = true;
-};
  
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -355,8 +351,9 @@ in
 
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall = true; # Open ports for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports for Source Dedicated Server
+    gamescopeSession.enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
   };
 
   # Some programs need SUID wrappers, can be configured further or are
