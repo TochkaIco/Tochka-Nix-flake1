@@ -52,7 +52,8 @@ in
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.graceful = true;
+  boot.loader.efi.canTouchEfiVariables = false;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
@@ -322,6 +323,7 @@ in
      spotify
      spicetify-cli
      rnote
+     gimp
      texmaker 
  
      freecad
