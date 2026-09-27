@@ -308,7 +308,7 @@ in
      wf-recorder
      kdePackages.dolphin
      zip
-     unzip
+     unzip 
 
      # CLI
      vim

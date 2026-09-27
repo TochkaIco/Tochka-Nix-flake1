@@ -37,6 +37,7 @@ in
   wayland.windowManager.hyprland.settings = {
     bind = [
       "SUPER, T, exec, foot"
+      "SUPER SHIFT, S, exec, grim -g \"$(slurp)\" - | satty --filename - --fullscreen"
     ];
   };
  
@@ -109,6 +110,7 @@ in
     pkgs.wl-clipboard
     pkgs.grim
     pkgs.slurp
+    pkgs.satty
     pkgs.swappy
     pkgs.gpu-screen-recorder
     pkgs.hyprpicker
