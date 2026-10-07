@@ -54,6 +54,7 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.graceful = true;
   boot.loader.efi.canTouchEfiVariables = false;
+  boot.loader.systemd-boot.configurationLimit = 5;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
@@ -334,6 +335,7 @@ in
      rnote
      gimp
      texmaker 
+     libreoffice
  
      freecad
 
