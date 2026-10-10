@@ -44,7 +44,7 @@ in
   xdg.configFile."caelestia/hypr-vars.lua" = {
     text = ''
       return {
-        fileExplorer = "dolphin",
+        fileExplorer = "nautilus",
       }
     '';
     force = true;
