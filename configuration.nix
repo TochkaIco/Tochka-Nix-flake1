@@ -121,6 +121,12 @@ in
 
   services.tailscale.enable = true;
 
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -290,6 +296,8 @@ in
   };
 
   services.flatpak.enable = true;
+
+  services.printing.logLevel = "debug";
 
   programs.gpu-screen-recorder.enable = true;
 
