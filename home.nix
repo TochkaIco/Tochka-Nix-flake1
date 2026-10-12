@@ -40,6 +40,79 @@ in
       "SUPER SHIFT, S, exec, grim -g \"$(slurp)\" - | satty --filename - --fullscreen"
     ];
   };
+
+  # Vesktop
+  xdg.configFile."vesktop/settings.json" = {
+    text = ''
+      {
+        minimizeToTray = true;
+        "discordBranch": "stable",
+        "minimizeToTray": true,
+        "arRPC": true,
+        "spellCheckLanguages": [
+          "en-US",
+          "en",
+          "sv",
+          "sv-SE",
+          "ru"
+        ],
+        "splashColor": "rgb(220, 232, 230)",
+        "splashBackground": "rgb(19, 27, 26)"
+      }
+    '';
+    force = true;
+  };
+  xdg.configFile."vesktop/settings/settings.json" = {
+    text = ''
+      {
+        "autoUpdate": true,
+        "autoUpdateNotification": true,
+        "useQuickCss": true,
+        "themeLinks": [],
+        "eagerPatches": false,
+        "enabledThemes": [
+          "caelestia.theme.css"
+        ],
+        "enableReactDevtools": false,
+        "frameless": false,
+        "transparent": true,
+        "winCtrlQ": false,
+        "windowsMaterial": "none",
+        "disableMinSize": false,
+        "winNativeTitleBar": false,
+        "language": "sv-SE"
+        "plugins": {
+          "AddAttachments": { "enabled": true },
+          "CrashHandler": { "enabled": true },
+          "WebKeybinds": { "enabled": true },
+          "WebScreenShareFixes": { "enabled": true },
+          "ConcatenatedComponentExtractor": { "enabled": true },
+          "DisableDeepLinks": { "enabled": true },
+          "SupportHelper": { "enabled": true },
+          "WebContextMenus": { "enabled": true },
+          "BadgeAPI": { "enabled": true },
+          "AlwaysExpandRoles": { "enabled": true },
+          "CopyFileContexts": { "enabled": true },
+          "NoTrack": {
+            "enabled": true,
+            "disableAnalytics": true
+          },
+          "Settings": {
+            "enabled": true,
+            "settingsLocation": "aboveNitro",
+            "includeVencordInfoWhenCopying": true
+          }
+        },
+        "notifications": {
+          "timeout": 5000,
+          "position": "bottom-right",
+          "useNative": "not-focused",
+          "logLimit": 50
+        }
+      }
+    '';
+    force = true;
+  };
  
   xdg.configFile."caelestia/hypr-vars.lua" = {
     text = ''
