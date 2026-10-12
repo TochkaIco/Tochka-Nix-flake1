@@ -62,6 +62,8 @@ in
     '';
     force = true;
   };
+
+  # Vesktop Settings
   xdg.configFile."vesktop/settings/settings.json" = {
     text = ''
       {
@@ -80,9 +82,8 @@ in
         "windowsMaterial": "none",
         "disableMinSize": false,
         "winNativeTitleBar": false,
-        "language": "sv-SE"
+        "language": "sv-SE",
         "plugins": {
-          "AddAttachments": { "enabled": true },
           "CrashHandler": { "enabled": true },
           "WebKeybinds": { "enabled": true },
           "WebScreenShareFixes": { "enabled": true },
@@ -92,7 +93,14 @@ in
           "WebContextMenus": { "enabled": true },
           "BadgeAPI": { "enabled": true },
           "AlwaysExpandRoles": { "enabled": true },
-          "CopyFileContexts": { "enabled": true },
+          "CopyFileContents": { "enabled": true },
+          "AddAttachments": { "enabled": true },
+          "BetterUploadButton": { "enabled": true },
+          "CharacterCounter": { "enabled": true },
+          "GifPaste": { "enabled": true },
+          "ImageFilename": { "enabled": true },
+          "ImageZoom": { "enabled": true },
+          "petpet": { "enabled": true },
           "NoTrack": {
             "enabled": true,
             "disableAnalytics": true
