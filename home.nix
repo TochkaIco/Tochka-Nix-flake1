@@ -101,6 +101,8 @@ in
           "ImageFilename": { "enabled": true },
           "ImageZoom": { "enabled": true },
           "petpet": { "enabled": true },
+          "ReverseImageSearch": { "enabled": true },
+          "UserMessagesPronouns": { "enabled": true },
           "NoTrack": {
             "enabled": true,
             "disableAnalytics": true
