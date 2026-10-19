@@ -156,6 +156,10 @@ in
     ];
   };
 
+  # Virtualbox setup
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "tochka" ];
+
   # Install firefox.
   programs.firefox.enable = true;
 
