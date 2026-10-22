@@ -337,12 +337,14 @@ in
      tigervnc
      ptouch-print
      imagemagick
+     hexchat
 
      # Regular Apps
      telegram-desktop
      signal-desktop
      vesktop
      spotify
+     chromium
      spicetify-cli
      rnote
      gimp
