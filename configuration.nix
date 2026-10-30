@@ -334,6 +334,7 @@ in
      foot
      tree
      nmap
+     arp-scan
      tigervnc
      ptouch-print
      imagemagick
@@ -350,6 +351,7 @@ in
      gimp
      texmaker 
      libreoffice
+     headlamp
  
      freecad
 
