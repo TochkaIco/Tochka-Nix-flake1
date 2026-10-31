@@ -339,6 +339,7 @@ in
      ptouch-print
      imagemagick
      hexchat
+     cloudflared
 
      # Regular Apps
      telegram-desktop

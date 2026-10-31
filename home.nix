@@ -41,6 +41,17 @@ in
     ];
   };
 
+  # SSH
+  xdg.configFile."ssh/config" = {
+    text = ''
+Host ssh-git.tochkaico.org
+    User git
+    Port 2222
+    ProxyCommand cloudflared access ssh --hostname %h
+    '';
+    force = true;
+  };
+
   # Vesktop
   xdg.configFile."vesktop/settings.json" = {
     text = ''
