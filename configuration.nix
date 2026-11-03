@@ -326,6 +326,7 @@ in
      # CLI
      vim
      vis
+     fzf
      btop
      fastfetch
      git
