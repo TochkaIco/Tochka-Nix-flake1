@@ -42,7 +42,7 @@ in
   };
 
   # SSH
-  xdg.configFile."ssh/config" = {
+  xdg.configFile.".ssh/config" = {
     text = ''
 Host ssh-git.tochkaico.org
     User git

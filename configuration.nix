@@ -311,7 +311,7 @@ in
     updater.interval = "daily";
   };
 
-  programs.gamemode.enable = true;
+  programs.gamemode.enable = true; 
  
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -345,6 +345,7 @@ in
      # Regular Apps
      telegram-desktop
      signal-desktop
+     irccloud
      vesktop
      spotify
      chromium
@@ -356,6 +357,9 @@ in
      headlamp
  
      freecad
+
+     # School-related
+     cisco-packet-tracer_9
 
      # Programming
      vscode
