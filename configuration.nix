@@ -345,7 +345,6 @@ in
      # Regular Apps
      telegram-desktop
      signal-desktop
-     irccloud
      vesktop
      spotify
      chromium
