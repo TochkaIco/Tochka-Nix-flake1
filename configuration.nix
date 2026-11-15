@@ -177,6 +177,7 @@ in
   # Home Manager Settings
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
+  home-manager.backupFileExtension = "backup";
 
   # Load your separate home.nix file here:
   home-manager.users.tochka = import ./home.nix;
@@ -318,6 +319,7 @@ in
   environment.systemPackages = with pkgs; [
      # System
      home-manager
+     networkmanagerapplet
      wf-recorder
      kdePackages.dolphin
      zip
@@ -354,6 +356,8 @@ in
      texmaker 
      libreoffice
      headlamp
+
+     r2modman
  
      freecad
 
@@ -385,6 +389,7 @@ in
 
   programs.steam = {
     enable = true;
+    protontricks.enable = true;
     gamescopeSession.enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
