@@ -240,6 +240,32 @@ Host ssh-git.tochkaico.org
     };
   };
 
+  programs.vim = {
+    enable = true;
+    plugins = with pkgs.vimPlugins; [
+      # check pkgs.vimPlugins or use the zero-plugin function below.
+    ];
+    extraConfig = ''
+      let g:mdip_imgdir = 'assets'
+      
+      function! PasteMarkdownImage()
+        call mkdir('assets', 'p')
+        let l:filename = 'assets/' . strftime('%Y-%m-%d-%H-%M-%S') . '.png'
+        let l:cmd = 'wl-paste --type image/png > ' . shellescape(l:filename)
+        call system(l:cmd)
+        if getfsize(l:filename) > 0
+          execute "normal! a![](" . l:filename . ")\<Esc>F["
+          startinsert
+        else
+          call delete(l:filename)
+          echo "No PNG image found in clipboard."
+        endif
+      endfunction
+
+      autocmd FileType markdown nnoremap <buffer> <leader>p :call PasteMarkdownImage()<CR>
+    '';
+  };
+
   imports = [
     inputs.spicetify-nix.homeManagerModules.default
   ];

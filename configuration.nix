@@ -311,7 +311,7 @@ in
     daemon.enable = true;
     updater.enable = true;
     updater.interval = "daily";
-  };
+  }; 
 
   programs.gamemode.enable = true; 
  
@@ -327,7 +327,6 @@ in
      unzip 
 
      # CLI
-     vim
      vis
      fzf
      btop
@@ -344,7 +343,7 @@ in
      imagemagick
      hexchat
      cloudflared
-     glow
+     mdcat
 
      # Regular Apps
      telegram-desktop
