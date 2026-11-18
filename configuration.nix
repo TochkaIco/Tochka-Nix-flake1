@@ -170,7 +170,7 @@ in
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 30d";
+    options = "--delete-older-than 7d";
   };
   nix.settings.auto-optimise-store = true;
 
@@ -236,6 +236,7 @@ in
     # NixOs
     rebuild = "cd /home/tochka/nix; git add .; git status; sudo nixos-rebuild switch --impure --flake /home/tochka/nix/.#nixos";
     updatere = "cd /home/tochka/nix; git add .; git status; sudo nix flake update";
+    garbage-clean = "sudo nix-collect-garbage -d";
   };
 
   hardware.bluetooth = {
@@ -343,6 +344,7 @@ in
      imagemagick
      hexchat
      cloudflared
+     glow
 
      # Regular Apps
      telegram-desktop
@@ -362,7 +364,7 @@ in
      freecad
 
      # School-related
-     cisco-packet-tracer_9
+     # cisco-packet-tracer_9
 
      # Programming
      vscode
