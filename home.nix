@@ -244,7 +244,7 @@ Host ssh-git.tochkaico.org
     enable = true;
     plugins = with pkgs.vimPlugins; [
       # check pkgs.vimPlugins or use the zero-plugin function below.
-    ];
+    ]; # \p to trigger
     extraConfig = ''
       let g:mdip_imgdir = 'assets'
       
@@ -254,7 +254,7 @@ Host ssh-git.tochkaico.org
         let l:cmd = 'wl-paste --type image/png > ' . shellescape(l:filename)
         call system(l:cmd)
         if getfsize(l:filename) > 0
-          execute "normal! a![](" . l:filename . ")\<Esc>F["
+          execute "normal! a![img](" . l:filename . ")\<Esc>F["
           startinsert
         else
           call delete(l:filename)
