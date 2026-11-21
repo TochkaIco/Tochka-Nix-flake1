@@ -370,6 +370,7 @@ in
      jetbrains.phpstorm
      jetbrains.webstorm
      jetbrains.pycharm
+     argocd
 
      opencode
      antigravity
